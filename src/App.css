@@ -309,7 +309,7 @@ button:disabled {
   justify-content: center;
   width: 100%;
   padding: 2%;
-  position: sticky;
+  /* position: sticky; */
   top: 0;
   z-index: 100;
 }
