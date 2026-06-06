@@ -192,7 +192,9 @@ button:disabled {
 .strength-bar {
   height: 4px;
   border-radius: 2px;
-  transition: width 0.2s ease, background-color 0.2s ease;
+  transition:
+    width 0.2s ease,
+    background-color 0.2s ease;
   margin-bottom: 0.15rem;
 }
 
@@ -306,7 +308,7 @@ button:disabled {
   display: flex;
   justify-content: center;
   width: 100%;
-  padding: 24px 16px;
+  padding: 2%;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -432,7 +434,9 @@ button:disabled {
   background: transparent;
   color: #6b7280;
   padding: 0;
-  transition: background 0.15s, color 0.15s;
+  transition:
+    background 0.15s,
+    color 0.15s;
 }
 
 .navbar-logout-btn:hover {
@@ -565,14 +569,26 @@ button:disabled {
   letter-spacing: 0.05em;
 }
 
-.stat-primary .stat-value { color: var(--color-primary); }
-.stat-primary .stat-label { color: var(--color-primary); }
+.stat-primary .stat-value {
+  color: var(--color-primary);
+}
+.stat-primary .stat-label {
+  color: var(--color-primary);
+}
 
-.stat-success .stat-value { color: var(--color-success); }
-.stat-success .stat-label { color: var(--color-success); }
+.stat-success .stat-value {
+  color: var(--color-success);
+}
+.stat-success .stat-label {
+  color: var(--color-success);
+}
 
-.stat-warning .stat-value { color: #d97706; }
-.stat-warning .stat-label { color: #d97706; }
+.stat-warning .stat-value {
+  color: #d97706;
+}
+.stat-warning .stat-label {
+  color: #d97706;
+}
 
 /* ═══════════════════════════════════════════════════════
    DASHBOARD CARDS
@@ -618,7 +634,9 @@ button:disabled {
   border-radius: var(--radius-lg);
   color: var(--color-text-secondary);
   text-decoration: none;
-  transition: background 0.15s, border-color 0.15s;
+  transition:
+    background 0.15s,
+    border-color 0.15s;
 }
 
 .quick-action:hover {
@@ -878,9 +896,16 @@ button:disabled {
   opacity: 0.6;
 }
 
-.col-status { width: 50px; }
-.col-date { width: 110px; }
-.col-actions { width: 90px; text-align: center; }
+.col-status {
+  width: 50px;
+}
+.col-date {
+  width: 110px;
+}
+.col-actions {
+  width: 90px;
+  text-align: center;
+}
 
 .cell-date {
   font-size: var(--font-size-xs);
@@ -962,7 +987,7 @@ button:disabled {
 }
 
 .toggle-slider::before {
-  content: '';
+  content: "";
   position: absolute;
   width: 18px;
   height: 18px;
