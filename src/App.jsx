@@ -8,9 +8,8 @@ import ForgotPasswordPage from './pages/ForgotPasswordPage'
 import DashboardPage from './features/dashboard/DashboardPage'
 import TodoPage from './features/todos/TodoPage'
 import ProfilePage from './features/profile/ProfilePage'
-import AnalyticsPage from './features/dummy/AnalyticsPage'
+import FeaturesPage from './features/dummy/FeaturesPage'
 import SettingsPage from './features/dummy/SettingsPage'
-import HelpPage from './features/dummy/HelpPage'
 import { isSupabaseConfigured } from './lib/supabaseClient'
 import './App.css'
 
@@ -31,13 +30,12 @@ function AppRoutes() {
       <Route path="/signup" element={<PublicRoute><SignupPage /></PublicRoute>} />
       <Route path="/forgot-password" element={<ForgotPasswordPage />} />
 
-      <Route path="/dashboard" element={<AppLayout />}>
-        <Route index element={<DashboardPage />} />
-        <Route path="todos" element={<TodoPage />} />
-        <Route path="profile" element={<ProfilePage />} />
-        <Route path="analytics" element={<AnalyticsPage />} />
-        <Route path="settings" element={<SettingsPage />} />
-        <Route path="help" element={<HelpPage />} />
+      <Route element={<AppLayout />}>
+        <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/todo" element={<TodoPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/features" element={<FeaturesPage />} />
+        <Route path="/settings" element={<SettingsPage />} />
       </Route>
 
       <Route path="/" element={<Navigate to="/dashboard" replace />} />
