@@ -11,6 +11,7 @@ import TodoPage from './features/todos/TodoPage'
 import ProfilePage from './features/profile/ProfilePage'
 import FeaturesPage from './features/dummy/FeaturesPage'
 import SettingsPage from './features/dummy/SettingsPage'
+import LocationPage from './features/location/LocationPage'
 import { isSupabaseConfigured } from './lib/supabaseClient'
 import './App.css'
 
@@ -37,6 +38,7 @@ function AppRoutes() {
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/features" element={<FeaturesPage />} />
         <Route path="/settings" element={<SettingsPage />} />
+        <Route path="/location" element={<LocationPage />} />
       </Route>
 
       <Route path="/" element={<LandingPage />} />
