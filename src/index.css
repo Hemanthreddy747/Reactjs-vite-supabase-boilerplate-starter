@@ -1,24 +1,47 @@
-:root {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color: #0f172a;
-  background-color: #f8fafc;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@import './styles/theme.css';
 
-* {
+*, *::before, *::after {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  line-height: 1.5;
+  color: var(--color-text);
+  background-color: var(--color-bg);
   min-width: 320px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  line-height: 1.25;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+code {
+  font-size: 0.85em;
+  background: var(--color-border-light);
+  padding: 0.15em 0.35em;
+  border-radius: var(--radius-sm);
+}
+
+/* ── Error Boundary ──────────────────── */
 .error-shell {
   min-height: 100vh;
   display: grid;
@@ -29,31 +52,37 @@ body {
 .error-card {
   width: 100%;
   max-width: 420px;
-  background: #ffffff;
+  background: var(--color-surface);
   border: 1px solid #fecaca;
-  border-radius: 12px;
-  padding: 1.5rem;
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-2xl);
   box-shadow: 0 10px 30px rgba(127, 29, 29, 0.08);
   text-align: center;
 }
 
 .error-card h1 {
-  margin: 0 0 0.75rem;
-  font-size: 1.5rem;
-  color: #991b1b;
+  margin: 0 0 var(--spacing-md);
+  font-size: var(--font-size-2xl);
+  color: var(--color-danger-text);
 }
 
 .error-card p {
-  margin: 0 0 1rem;
-  color: #334155;
+  margin: 0 0 var(--spacing-lg);
+  color: var(--color-text-secondary);
 }
 
 .error-card button {
   border: 0;
-  border-radius: 8px;
+  border-radius: var(--radius-lg);
   padding: 0.7rem 1rem;
-  background: #b91c1c;
+  background: var(--color-danger);
   color: #ffffff;
   font-weight: 600;
   cursor: pointer;
+}
+
+/* ── Utilities ───────────────────────── */
+.text-muted {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
 }
