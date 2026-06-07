@@ -21,6 +21,7 @@ export default function Navbar() {
     { to: "/todo", label: "Todo" },
     { to: "/features", label: "Features" },
     { to: "/settings", label: "Settings" },
+    { to: "/location", label: "Location" },
   ]
 
   const userInitial = (
