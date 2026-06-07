@@ -29,6 +29,7 @@ export default function LocationPage() {
   const [activeTab, setActiveTab] = useState(TABS.COLLECT)
   const [isTracking, setIsTracking] = useState(false)
   const [lastLocation, setLastLocation] = useState(null)
+  const [lastLocationTime, setLastLocationTime] = useState(null)
   const [locationCount, setLocationCount] = useState(0)
   const [locations, setLocations] = useState([])
   const [isLoading, setIsLoading] = useState(true)
@@ -40,6 +41,7 @@ export default function LocationPage() {
   const [trackInterval, setTrackInterval] = useState(10)
   const trackIntervalRef = useRef(null)
   const mapIntervalRef = useRef(null)
+  const lastSentLocationRef = useRef(null)
 
   const fetchLocations = useCallback((pageNum) => {
     const from = (pageNum - 1) * PAGE_SIZE
@@ -85,6 +87,17 @@ export default function LocationPage() {
     }
   }, [activeTab, fetchLocations])
 
+  const getDistance = (lat1, lng1, lat2, lng2) => {
+    const R = 6371000
+    const toRad = (deg) => (deg * Math.PI) / 180
+    const dLat = toRad(lat2 - lat1)
+    const dLng = toRad(lng2 - lng1)
+    const a =
+      Math.sin(dLat / 2) ** 2 +
+      Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLng / 2) ** 2
+    return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
+  }
+
   const captureAndSend = useCallback(async () => {
     if (!navigator.geolocation) {
       setErrorMessage('Geolocation is not supported by this browser')
@@ -95,6 +108,15 @@ export default function LocationPage() {
       async (position) => {
         const { latitude, longitude } = position.coords
         setLastLocation({ lat: latitude, lng: longitude })
+        setLastLocationTime(new Date())
+
+        const prev = lastSentLocationRef.current
+        if (prev) {
+          const dist = getDistance(prev.lat, prev.lng, latitude, longitude)
+          if (dist < 20) {
+            return
+          }
+        }
 
         const { error } = await supabase
           .from('locations')
@@ -103,6 +125,7 @@ export default function LocationPage() {
         if (error) {
           setErrorMessage(error.message)
         } else {
+          lastSentLocationRef.current = { lat: latitude, lng: longitude }
           setLocationCount((c) => c + 1)
           setErrorMessage('')
         }
@@ -192,6 +215,13 @@ export default function LocationPage() {
                   {lastLocation.lat.toFixed(6)}, {lastLocation.lng.toFixed(6)}
                 </p>
               )}
+              {lastLocationTime && (
+                <p className="loc-collect-time">
+                  Last updated: {lastLocationTime.toLocaleTimeString('en-US', {
+                    hour: '2-digit', minute: '2-digit', second: '2-digit',
+                  })}
+                </p>
+              )}
               <p className="loc-collect-count">
                 Locations saved: <strong>{locationCount}</strong>
               </p>
@@ -228,10 +258,9 @@ export default function LocationPage() {
             <div className="loc-map-wrap">
               <div className="loc-map-container">
                 <MapContainer
-                  center={selectedLocation ? [selectedLocation.lat, selectedLocation.lng] : [lastLocation.lat, lastLocation.lng]}
+                  center={[lastLocation.lat, lastLocation.lng]}
                   zoom={15}
                   className="loc-map"
-                  key={selectedLocation ? `sel-${selectedLocation.lat}-${selectedLocation.lng}` : `latest-${lastLocation.lat}-${lastLocation.lng}`}
                 >
                   <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
