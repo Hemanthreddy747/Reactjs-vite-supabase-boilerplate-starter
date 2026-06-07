@@ -19,9 +19,7 @@ export default function Navbar() {
   const links = [
     { to: "/dashboard", label: "Dashboard" },
     { to: "/todo", label: "Todo" },
-    { to: "/location", label: "Location" },
     { to: "/settings", label: "Settings" },
-    { to: "/location", label: "Location" },
   ]
 
   const userInitial = (
