@@ -8,6 +8,7 @@ import SignupPage from './pages/SignupPage'
 import ForgotPasswordPage from './pages/ForgotPasswordPage'
 import DashboardPage from './features/dashboard/DashboardPage'
 import TodoPage from './features/todos/TodoPage'
+import LocationPage from './features/location/LocationPage'
 import ProfilePage from './features/profile/ProfilePage'
 import FeaturesPage from './features/dummy/FeaturesPage'
 import SettingsPage from './features/dummy/SettingsPage'
@@ -34,6 +35,7 @@ function AppRoutes() {
       <Route element={<AppLayout />}>
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/todo" element={<TodoPage />} />
+        <Route path="/location" element={<LocationPage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/features" element={<FeaturesPage />} />
         <Route path="/settings" element={<SettingsPage />} />
